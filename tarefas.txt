@@ -1,0 +1,33 @@
+Ferramenta para tarefas de casa
+
+- Tarefas diárias
+- Tarefas semanais
+- Tarefas mensais
+- Tarefas que são realizadas 2x por semana
+
+- Listar essas tarefas por período e recorrência
+- Calendário que liste as tarefas do dia
+
+- Programação de tarefas por período
+
+-----------------
+
+Entidades
+
+- Tarefa
+	* nome
+	* anotações
+	
+- Agenda
+	* início
+	* tarefa
+	* recorrência
+	* fim
+
+------------------
+
+Ações
+
+- Gerenciar tarefas
+- Agendar tarefas
+- Consultar programação por período
