@@ -1,0 +1,22 @@
+@(myForm: Form[Tarefa])
+
+@helper.form(action = routes.TarefaController.submit()) {
+<div>
+    <input type="hidden" value='@myForm("id").value' name="id" id="id"/>
+</div>
+<div>
+    <p>
+        @helper.inputText(myForm("name"), '_label -> "Nome")
+    </p>
+</div>
+<div>
+    <p>
+        @helper.textarea(myForm("notes"), '_label -> "Anotações", 'rows -> 5)
+    </p>
+</div>
+<div>
+    <p>
+        <input type="submit" name="save" value="Salvar" id="save"/>
+    </p>
+</div>
+}

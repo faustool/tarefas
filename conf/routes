@@ -5,5 +5,12 @@
 # Home page
 GET     /                           controllers.Application.index()
 
+GET     /tarefas/new                 controllers.TarefaController.formNew()
+GET     /tarefas/update/:id          controllers.TarefaController.formUpdate(id: Integer)
+GET     /tarefas/list                controllers.TarefaController.list()
+GET     /tarefas/delete/:id          controllers.TarefaController.delete(id: Integer)
+
+POST    /tarefas/submit              controllers.TarefaController.submit()
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

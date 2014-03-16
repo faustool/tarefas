@@ -1,0 +1,29 @@
+@(tarefaList: List[models.Tarefa])
+
+<div>
+    <table>
+        <thead>
+            <td>id</td>
+            <td>Nome</td>
+            <td>Anotações</td>
+            <td>Remover</td>
+            <td>Atualizar</td>
+        </thead>
+        <tbody>
+            @for(tarefa <- tarefaList) {
+            <tr>
+                <td>@tarefa.id</td>
+                <td>@tarefa.name</td>
+                <td>@tarefa.notes</td>
+                <td><a href="@routes.TarefaController.delete(tarefa.id)">Remover</a></td>
+                <td><a href="@routes.TarefaController.formUpdate(tarefa.id)">Atualizar</a></td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div>
+    <p>
+        <a href="@routes.TarefaController.formNew">Novo</a>
+    </p>
+</div>
