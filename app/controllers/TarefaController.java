@@ -9,11 +9,7 @@ import views.html.tarefa.form;
 public class TarefaController extends Controller {
 
 	public static Result submit() {
-		Tarefa tarefa = Tarefa.form.bindFromRequest().get();
-		if (tarefa.id != null)
-			tarefa.update();
-		else
-			tarefa.save();
+		Tarefa.submit();
 		return Results.redirect(routes.TarefaController.list());
 	}
 

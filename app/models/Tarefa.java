@@ -29,4 +29,12 @@ public class Tarefa extends Model {
 		this.name = name;
 	}
 	
+	public static void submit() {
+		Tarefa tarefa = Tarefa.form.bindFromRequest().get();
+		if (tarefa.id != null)
+			tarefa.update();
+		else
+			tarefa.save();
+	}
+	
 }
