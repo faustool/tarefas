@@ -2,47 +2,55 @@ package controllers;
 
 import java.util.List;
 
+import models.Tarefa;
 import play.api.mvc.Call;
 import play.api.templates.Html;
 import play.data.Form;
-import play.db.ebean.Model;
 import play.db.ebean.Model.Finder;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Results;
+import views.html.tarefa.form;
 
-public abstract class CRUDController<T extends Model> extends Controller {
+public class CRUDController extends Controller {
 
 	/* DO NOT ADD ANY FIELD - KEEP IT STATELESS */
 
 	public Result submit() {
-		T tarefa = getModelForm().bindFromRequest().get();
+		Tarefa tarefa = getModelForm().bindFromRequest().get();
 		tarefa.save();
 		return Results.redirect(getListRoute());
 	}
 
-	protected abstract Call getListRoute();
+	private Call getListRoute() {
+		return routes.TarefaController.list();
+	}
 
-	protected abstract Form<T> getModelForm();
+	private Form<Tarefa> getModelForm() {
+		return Tarefa.form;
+	}
 
 	public Result formNew() {
-		return ok(renderForm(getModelForm()));
+		return ok(form.render(getModelForm()));
 	}
 
 	public Result formUpdate(Integer id) {
-		T tarefa = getModelFinder().byId(id);
-		return ok(renderForm(getModelForm().fill(tarefa)));
+		Tarefa tarefa = getModelFinder().byId(id);
+		return ok(form.render(getModelForm().fill(tarefa)));
 	}
 
-	protected abstract Finder<Integer, T> getModelFinder();
+	private Finder<Integer, Tarefa> getModelFinder() {
+		return Tarefa.finder;
+	}
 
 	public Result delete(Integer id) {
 		getModelFinder().byId(id).delete();
 		return Results.redirect(getListRoute());
 	}
 
-	protected abstract Html renderList(List<T> items);
-	protected abstract Html renderForm(Form<T> form);
+	public Html renderList(List<Tarefa> items) {
+		return views.html.tarefa.list.render(items);
+	}
 
 	public Result list() {
 		return ok(renderList(getModelFinder().all()));

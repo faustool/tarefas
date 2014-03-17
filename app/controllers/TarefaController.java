@@ -1,40 +1,40 @@
 package controllers;
 
-import java.util.List;
-
 import models.Tarefa;
-import play.api.mvc.Call;
-import play.api.templates.Html;
-import play.data.Form;
-import play.db.ebean.Model.Finder;
+import play.mvc.Controller;
+import play.mvc.Result;
+import play.mvc.Results;
+import views.html.tarefa.form;
 
-public class TarefaController extends CRUDController<Tarefa> {
+public class TarefaController extends Controller {
 
 	/* DO NOT ADD ANY FIELD - KEEP IT STATELESS */
-
-	@Override
-	protected Call getListRoute() {
-		return routes.TarefaController.list();
+	
+	public Result submit() {
+		Tarefa tarefa = Tarefa.form.bindFromRequest().get();
+		if (tarefa.id != null)
+			tarefa.update();
+		else
+			tarefa.save();
+		return Results.redirect(routes.TarefaController.list());
 	}
 
-	@Override
-	protected Form<Tarefa> getModelForm() {
-		return Tarefa.form;
+	public Result formNew() {
+		return ok(form.render(Tarefa.form));
 	}
 
-	@Override
-	protected Finder<Integer, Tarefa> getModelFinder() {
-		return Tarefa.finder;
+	public Result formUpdate(Integer id) {
+		Tarefa tarefa = Tarefa.finder.byId(id);
+		return ok(form.render(Tarefa.form.fill(tarefa)));
 	}
 
-	@Override
-	public Html renderList(List<Tarefa> items) {
-		return views.html.tarefa.list.render(items);
+	public Result delete(Integer id) {
+		Tarefa.finder.byId(id).delete();
+		return Results.redirect(routes.TarefaController.list());
 	}
 
-	@Override
-	protected Html renderForm(Form<Tarefa> form) {
-		return views.html.tarefa.form.render(form);
+	public Result list() {
+		return ok(views.html.tarefa.list.render(Tarefa.finder.all()));
 	}
 
 }
