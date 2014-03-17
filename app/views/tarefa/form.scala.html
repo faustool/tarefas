@@ -1,5 +1,6 @@
 @(myForm: Form[Tarefa])
 
+@main("Lista de tarefas") {
 @helper.form(action = routes.TarefaController.submit()) {
 <div>
     <input type="hidden" value='@myForm("id").value' name="id" id="id"/>
@@ -19,4 +20,5 @@
         <input type="submit" name="save" value="Salvar" id="save"/>
     </p>
 </div>
+}
 }
