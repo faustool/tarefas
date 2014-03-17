@@ -8,9 +8,7 @@ import views.html.tarefa.form;
 
 public class TarefaController extends Controller {
 
-	/* DO NOT ADD ANY FIELD - KEEP IT STATELESS */
-	
-	public Result submit() {
+	public static Result submit() {
 		Tarefa tarefa = Tarefa.form.bindFromRequest().get();
 		if (tarefa.id != null)
 			tarefa.update();
@@ -19,21 +17,21 @@ public class TarefaController extends Controller {
 		return Results.redirect(routes.TarefaController.list());
 	}
 
-	public Result formNew() {
+	public static Result formNew() {
 		return ok(form.render(Tarefa.form));
 	}
 
-	public Result formUpdate(Integer id) {
+	public static Result formUpdate(Integer id) {
 		Tarefa tarefa = Tarefa.finder.byId(id);
 		return ok(form.render(Tarefa.form.fill(tarefa)));
 	}
 
-	public Result delete(Integer id) {
+	public static Result delete(Integer id) {
 		Tarefa.finder.byId(id).delete();
 		return Results.redirect(routes.TarefaController.list());
 	}
 
-	public Result list() {
+	public static Result list() {
 		return ok(views.html.tarefa.list.render(Tarefa.finder.all()));
 	}
 
