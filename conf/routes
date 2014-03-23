@@ -12,5 +12,12 @@ GET     /tarefas/delete/:id          controllers.TarefaController.delete(id: Int
 
 POST    /tarefas/submit              controllers.TarefaController.submit()
 
+GET     /programacao/new                 controllers.ProgramacaoController.formNew()
+GET     /programacao/update/:id          controllers.ProgramacaoController.formUpdate(id: Integer)
+GET     /programacao/list                controllers.ProgramacaoController.list()
+GET     /programacao/delete/:id          controllers.ProgramacaoController.delete(id: Integer)
+
+POST    /programacao/submit              controllers.ProgramacaoController.submit()
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

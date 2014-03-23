@@ -1,6 +1,8 @@
 package controllers;
 
 import models.Tarefa;
+import static play.libs.Json.*;
+
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Results;

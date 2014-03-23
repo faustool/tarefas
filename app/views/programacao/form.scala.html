@@ -1,4 +1,4 @@
-@(myForm: Form[Tarefa])
+@(myForm: Form[Programacao])
 
 @main("Lista de tarefas") { } {
 @helper.form(action = routes.TarefaController.submit()) {
@@ -7,12 +7,17 @@
 </div>
 <div>
     <p>
-        @helper.inputText(myForm("name"), '_label -> "Nome")
+        @helper.inputDate(myForm("inicio"), '_label -> "Início")
     </p>
 </div>
 <div>
     <p>
-        @helper.textarea(myForm("notes"), '_label -> "Anotações", 'rows -> 5)
+        @helper.inputDate(myForm("fim"), '_label -> "Fim", 'rows -> 5)
+    </p>
+</div>
+<div>
+    <p>
+        @helper.inputRadioGroup(myForm("recorrencia"), options = Seq("D"->"Diário"), '_label -> "Recorrência")
     </p>
 </div>
 <div>
