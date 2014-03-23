@@ -1,23 +1,128 @@
 @(myForm: Form[Programacao])
 
-@main("Lista de tarefas") { } {
-@helper.form(action = routes.TarefaController.submit()) {
+@main("Criar/Alterar Programação") { } {
+@helper.form(action = routes.ProgramacaoController.submit()) {
 <div>
     <input type="hidden" value='@myForm("id").value' name="id" id="id"/>
 </div>
 <div>
     <p>
-        @helper.inputDate(myForm("inicio"), '_label -> "Início")
+        @helper.inputText(myForm("inicio"), '_label -> "Início")
     </p>
+    <script>
+		$("#inicio").datepicker();
+    </script>
 </div>
 <div>
     <p>
-        @helper.inputDate(myForm("fim"), '_label -> "Fim", 'rows -> 5)
+        @helper.inputText(myForm("fim"), '_label -> "Fim", 'rows -> 5)
     </p>
+    <script>
+		$("#fim").datepicker();
+    </script>
 </div>
 <div>
     <p>
-        @helper.inputRadioGroup(myForm("recorrencia"), options = Seq("D"->"Diário"), '_label -> "Recorrência")
+        <div id="tabs">
+            <ul>
+                <li>
+                    <a href="#diario"><span>Dias</span></a>
+                </li>
+                <li>
+                    <a href="#semanal"><span>Semanas</span></a>
+                </li>
+                <li>
+                    <a href="#mensal"><span>Meses</span></a>
+                </li>
+            </ul>
+            <div id="diario" class="div-table">
+                <div class="div-row">
+                    <div class="div-cell">
+                        @helper.checkbox(myForm("diarioSegunda"), '_label -> "segunda-feira")
+                    </div>
+                    <div class="div-cell">
+                        @helper.checkbox(myForm("diarioTerca"), '_label -> "terça-feira")
+                    </div>
+                    <div class="div-cell">
+                        @helper.checkbox(myForm("diarioQuarta"), '_label -> "quarta-feira")
+                    </div>
+                    <div class="div-cell">
+                        @helper.checkbox(myForm("diarioQuinta"), '_label -> "quinta-feira")
+                    </div>
+                    <div class="div-cell">
+                        @helper.checkbox(myForm("diarioSexta"), '_label -> "sexta-feira")
+                    </div>
+                    <div class="div-cell">
+                        @helper.checkbox(myForm("diarioSabado"), '_label -> "sábado")
+                    </div>
+                    <div class="div-cell">
+                        @helper.checkbox(myForm("diarioDomingo"), '_label -> "domingo")
+                    </div>
+                </div>
+            </div>
+            <div id="mensal" class="div-table">
+                <div class="div-row">
+                    <div class="div-cell">
+                        @helper.checkbox(myForm("mensalJaneiro"), '_label -> "Janeiro")
+                    </div>
+                    <div class="div-cell">
+                        @helper.checkbox(myForm("mensalFevereiro"), '_label -> "Fevereiro")
+                    </div>
+                    <div class="div-cell">
+                        @helper.checkbox(myForm("mensalMarco"), '_label -> "Março")
+                    </div>
+                    <div class="div-cell">
+                        @helper.checkbox(myForm("mensalAbril"), '_label -> "Abril")
+                    </div>
+                    <div class="div-cell">
+                        @helper.checkbox(myForm("mensalMaio"), '_label -> "Maio")
+                    </div>
+                    <div class="div-cell">
+                        @helper.checkbox(myForm("mensalJunho"), '_label -> "Junho")
+                    </div>
+                    <div class="div-cell">
+                        @helper.checkbox(myForm("mensalJulho"), '_label -> "Julho")
+                    </div>
+                    <div class="div-cell">
+                        @helper.checkbox(myForm("mensalAgosto"), '_label -> "Agosto")
+                    </div>
+                    <div class="div-cell">
+                        @helper.checkbox(myForm("mensalSetembro"), '_label -> "Setembro")
+                    </div>
+                    <div class="div-cell">
+                        @helper.checkbox(myForm("mensalOutubro"), '_label -> "Outubro")
+                    </div>
+                    <div class="div-cell">
+                        @helper.checkbox(myForm("mensalNovembro"), '_label -> "Novembro")
+                    </div>
+                    <div class="div-cell">
+                        @helper.checkbox(myForm("mensalDezembro"), '_label -> "Dezembro")
+                    </div>
+                </div>
+            </div>
+            <div id="semanal" class="div-table">
+                <div class="div-row">
+                    <div class="div-cell">
+                        @helper.checkbox(myForm("semanalPrimeira"), '_label -> "Primeira")
+                    </div>
+                    <div class="div-cell">
+                        @helper.checkbox(myForm("semanalSegunda"), '_label -> "Segunda")
+                    </div>
+                    <div class="div-cell">
+                        @helper.checkbox(myForm("semanalPenultima"), '_label -> "Penúltima")
+                    </div>
+                    <div class="div-cell">
+                        @helper.checkbox(myForm("semanalUltima"), '_label -> "Última")
+                    </div>
+                    <div class="div-cell">
+                        @helper.checkbox(myForm("semanalACada15Dias"), '_label -> "A cada 15 dias")
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+			$("#tabs").tabs();
+        </script>
     </p>
 </div>
 <div>

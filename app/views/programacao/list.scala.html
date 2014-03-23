@@ -7,7 +7,6 @@
             <td>id</td>
             <td>Inicio</td>
             <td>Fim</td>
-            <td>Recorrencia</td>
         </thead>
         <tbody>
             @for(programacao <- programacaoList) {
@@ -15,7 +14,6 @@
                 <td>@programacao.id</td>
                 <td>@programacao.inicio</td>
                 <td>@programacao.fim</td>
-                <td>@programacao.recorrencia</td>
                 <td><a href="@routes.ProgramacaoController.delete(programacao.id)">Remover</a></td>
                 <td><a href="@routes.ProgramacaoController.formUpdate(programacao.id)">Atualizar</a></td>
             </tr>

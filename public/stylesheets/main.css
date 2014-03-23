@@ -1,0 +1,15 @@
+.div-table {
+	display: table;
+}
+
+.div-row {
+	display: table-row;
+	overflow: hidden;
+}
+
+.div-cell {
+	display: table-cell;
+	float: left;
+	margin-left: 10px;
+	margin-right: 10px;
+}

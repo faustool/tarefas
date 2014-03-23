@@ -1,6 +1,6 @@
 @(myForm: Form[Tarefa])
 
-@main("Lista de tarefas") { } {
+@main("Criar/Alterar Tarefa") { } {
 @helper.form(action = routes.TarefaController.submit()) {
 <div>
     <input type="hidden" value='@myForm("id").value' name="id" id="id"/>

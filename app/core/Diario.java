@@ -7,7 +7,7 @@ public class Diario implements Recorrencia {
 
 	private int[] days;
 
-	public Diario(int[] days) {
+	public Diario(int ... days) {
 		this.days = days;
 	}
 
